@@ -18,6 +18,7 @@ class URLParserTests: XCTestCase {
     "https://www.youtube.com/watch?v=Fb6xOVdkaLM": "Fb6xOVdkaLM",
     "https://www.youtube.com/watch?v=wrAVXKkIK_A": "wrAVXKkIK_A",
     "http://www.youtube.com/watch?v=qgszsGqevtk": "qgszsGqevtk",
+    "https://www.youtube.com/embed/lvReN-poqDY": "lvReN-poqDY",
     "www.youtube.com/watch?v=qYOr8TlnqsY": "qYOr8TlnqsY",
     "youtube.com/watch?v=aemNes9y-3c": "aemNes9y-3c",
     "https://youtu.be/wpDmZVYC8KU?t=49": "wpDmZVYC8KU",

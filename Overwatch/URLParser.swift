@@ -18,7 +18,7 @@ class URLParser {
   }
 
   func isYouTube() -> Bool {
-    let pattern = "(((http(s?)://)?(www.)?((youtube.com/watch\\?(.*)v=)|(youtu.be/))\(codePattern))|^\(codePattern)$)"
+    let pattern = "(((http(s?)://)?(www.)?((youtube.com/watch\\?(.*)v=)|youtu.be/|youtube.com/embed/)\(codePattern))|^\(codePattern)$)"
 
     let regex = try! NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
     let matches = regex.numberOfMatchesInString(self.urlFragment,
