@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Overwatch" customModuleProvider="target">
             <connections>
+                <outlet property="menuOpenClipboard" destination="yZi-qy-0Q2" id="mui-6t-D03"/>
                 <outlet property="statusMenu" destination="5NF-ya-y40" id="XvQ-I6-1ps"/>
             </connections>
         </customObject>
@@ -676,6 +677,9 @@
                 </menuItem>
                 <menuItem title="Open from Clipboard..." id="yZi-qy-0Q2">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="actionOpenClipboard:" target="Voe-Tx-rLC" id="yRP-nU-4tR"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="SX0-X8-pIF"/>
                 <menuItem title="Reset positions..." id="MzH-V6-Xkf">
@@ -692,6 +696,9 @@
                     </connections>
                 </menuItem>
             </items>
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="joO-Lq-Otq"/>
+            </connections>
         </menu>
     </objects>
 </document>

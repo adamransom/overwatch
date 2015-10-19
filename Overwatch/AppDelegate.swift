@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   @IBOutlet weak var statusMenu: NSMenu!
+  @IBOutlet weak var menuOpenClipboard: NSMenuItem!
 
   var videoWindows = [NSWindow]()
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
@@ -28,8 +29,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Insert code here to tear down your application
   }
 
+  override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+    // Only enable "Open from Clipboard..." if there is a
+    // YouTube URL on the clipboard
+    if (menuItem == menuOpenClipboard) {
+      let clipboard = NSPasteboard.generalPasteboard();
+
+      if let items = clipboard.pasteboardItems {
+        let urlFragment = items[0].stringForType("public.utf8-plain-text")
+        if (urlFragment != nil) {
+          return URLParser(urlFragment: urlFragment!).isYouTube()
+        }
+      }
+    }
+
+    return true
+  }
+
   @IBAction func actionOpenURL(sender: NSMenuItem) {
     askForURL()
+  }
+
+  @IBAction func actionOpenClipboard(sender: NSMenuItem) {
+    let clipboard = NSPasteboard.generalPasteboard();
+
+    if let items = clipboard.pasteboardItems {
+      let urlFragment = items[0].stringForType("public.utf8-plain-text")
+      if (urlFragment != nil) {
+        let parser = URLParser(urlFragment: urlFragment!)
+
+        if (parser.isYouTube()) {
+          createWindow(parser.url()!)
+        }
+      }
+    }
   }
 
   @IBAction func actionResetPositions(sender: NSMenuItem) {
