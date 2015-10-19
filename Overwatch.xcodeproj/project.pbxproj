@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		667A51E01BD5692E000649F4 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51DF1BD5692E000649F4 /* URLParser.swift */; settings = {ASSET_TAGS = (); }; };
 		66C1A1B21BD3F22B00000F4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1B11BD3F22B00000F4F /* AppDelegate.swift */; };
 		66C1A1B41BD3F22B00000F4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1B31BD3F22B00000F4F /* Images.xcassets */; };
 		66C1A1B71BD3F22B00000F4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1B51BD3F22B00000F4F /* MainMenu.xib */; };
-		66C1A1C31BD3F22B00000F4F /* OverwatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1C21BD3F22B00000F4F /* OverwatchTests.swift */; };
+		66C1A1C31BD3F22B00000F4F /* URLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1C21BD3F22B00000F4F /* URLParserTests.swift */; };
 		66C1A1CD1BD3F32600000F4F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1A1CC1BD3F32600000F4F /* WebKit.framework */; };
 		66C1A1D01BD3F7F100000F4F /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1CE1BD3F7F100000F4F /* VideoViewController.swift */; };
 		66C1A1D11BD3F7F100000F4F /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1CF1BD3F7F100000F4F /* VideoViewController.xib */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		667A51DF1BD5692E000649F4 /* URLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
 		66C1A1AC1BD3F22B00000F4F /* Overwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C1A1B01BD3F22B00000F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66C1A1B11BD3F22B00000F4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +36,7 @@
 		66C1A1B61BD3F22B00000F4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		66C1A1BC1BD3F22B00000F4F /* OverwatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverwatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C1A1C11BD3F22B00000F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66C1A1C21BD3F22B00000F4F /* OverwatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverwatchTests.swift; sourceTree = "<group>"; };
+		66C1A1C21BD3F22B00000F4F /* URLParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParserTests.swift; sourceTree = "<group>"; };
 		66C1A1CC1BD3F32600000F4F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		66C1A1CE1BD3F7F100000F4F /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		66C1A1CF1BD3F7F100000F4F /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				66C1A1CE1BD3F7F100000F4F /* VideoViewController.swift */,
 				66C1A1CF1BD3F7F100000F4F /* VideoViewController.xib */,
 				66C1A1AF1BD3F22B00000F4F /* Supporting Files */,
+				667A51DF1BD5692E000649F4 /* URLParser.swift */,
 			);
 			path = Overwatch;
 			sourceTree = "<group>";
@@ -102,7 +105,7 @@
 		66C1A1BF1BD3F22B00000F4F /* OverwatchTests */ = {
 			isa = PBXGroup;
 			children = (
-				66C1A1C21BD3F22B00000F4F /* OverwatchTests.swift */,
+				66C1A1C21BD3F22B00000F4F /* URLParserTests.swift */,
 				66C1A1C01BD3F22B00000F4F /* Supporting Files */,
 			);
 			path = OverwatchTests;
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66C1A1D01BD3F7F100000F4F /* VideoViewController.swift in Sources */,
+				667A51E01BD5692E000649F4 /* URLParser.swift in Sources */,
 				66C1A1B21BD3F22B00000F4F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,7 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C1A1C31BD3F22B00000F4F /* OverwatchTests.swift in Sources */,
+				66C1A1C31BD3F22B00000F4F /* URLParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

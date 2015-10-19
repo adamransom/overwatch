@@ -29,21 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func actionOpenURL(sender: NSMenuItem) {
-    let urlField = NSTextField(frame: CGRectMake(0, 0, 300, 20))
-    let alert = NSAlert()
-
-    alert.messageText = "Enter the URL of the YouTube video you want to watch:"
-    alert.addButtonWithTitle("OK")
-    alert.addButtonWithTitle("Cancel")
-    alert.accessoryView = urlField
-
-    let result = alert.runModal()
-    switch(result) {
-    case NSAlertFirstButtonReturn:
-      createWindow(urlField.stringValue)
-    default:
-      break
-    }
+    askForURL()
   }
 
   @IBAction func actionResetPositions(sender: NSMenuItem) {
@@ -114,6 +100,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let y = (NSScreen.mainScreen()?.visibleFrame.height)! - (height + padding) * CGFloat(index + 1)
 
     return CGRectMake(x, y, width, height)
+  }
+
+  func askForURL(invalid invalid: Bool = false, value: String = "") {
+    let urlField = NSTextField(frame: CGRectMake(0, 0, 300, 20))
+    let input = NSAlert()
+    let message: String
+
+    if (invalid) {
+      message = "Sorry, that doesn't seem to be a YouTube video. Maybe try again?"
+      urlField.stringValue = value
+    } else {
+      message = "Enter the URL of the YouTube video you want to watch:"
+    }
+
+    input.messageText = message
+    input.addButtonWithTitle("OK")
+    input.addButtonWithTitle("Cancel")
+    input.accessoryView = urlField
+
+    let result = input.runModal()
+    switch(result) {
+    case NSAlertFirstButtonReturn:
+      let parser = URLParser(urlFragment: urlField.stringValue)
+
+      if (parser.isYouTube()) {
+        createWindow(parser.url()!)
+      } else {
+        askForURL(invalid: true, value: urlField.stringValue)
+      }
+    default:
+      break
+    }
   }
 
 }
