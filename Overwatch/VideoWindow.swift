@@ -13,9 +13,11 @@ import Cocoa
   Represents one video, hovering over the desktop. A wrapper around
   NSWindowController and NSWindow.
 */
-class VideoWindow {
+class VideoWindow : NSObject, NSWindowDelegate {
   /// The URL of the video for the window
   var url: String
+  /// The delegate for the window
+  var delegate: VideoWindowDelegate?
   /// The index of the window in its container
   var index: Int? {
     get { return self.index_ }
@@ -42,6 +44,7 @@ class VideoWindow {
   */
   init?(url: String) {
     self.url = url
+    super.init()
 
     createWindow()
     createController()
@@ -66,6 +69,14 @@ class VideoWindow {
     self.window_!.setFrame(defaultFrame(), display: false)
   }
 
+  // MARK: - NSWindowDelegate Functions
+
+  func windowWillClose(notification: NSNotification) {
+    self.delegate?.windowWillClose(self)
+  }
+
+  // MARK: - Private Functions
+
   /**
     Creates and sets up the NSWindow.
   */
@@ -79,6 +90,7 @@ class VideoWindow {
 
     // Set up the titlebar
     if (self.window_ != nil) {
+      self.window_!.delegate = self
       self.window_!.titlebarAppearsTransparent = true
       self.window_!.movableByWindowBackground = true
       self.window_!.standardWindowButton(.ZoomButton)?.hidden = true
