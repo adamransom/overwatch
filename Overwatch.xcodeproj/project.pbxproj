@@ -11,6 +11,7 @@
 		667BBC0E1BD6ABAC007A3948 /* VideoWindowsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC0D1BD6ABAC007A3948 /* VideoWindowsContainer.swift */; settings = {ASSET_TAGS = (); }; };
 		667BBC101BD6ADC7007A3948 /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC0F1BD6ADC7007A3948 /* VideoWindow.swift */; settings = {ASSET_TAGS = (); }; };
 		667BBC121BD6D797007A3948 /* VideoWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC111BD6D797007A3948 /* VideoWindowDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		667BBC141BD6DE41007A3948 /* VideoWindowsContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC131BD6DE41007A3948 /* VideoWindowsContainerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		66C1A1B21BD3F22B00000F4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1B11BD3F22B00000F4F /* AppDelegate.swift */; };
 		66C1A1B41BD3F22B00000F4F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1B31BD3F22B00000F4F /* Images.xcassets */; };
 		66C1A1B71BD3F22B00000F4F /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1B51BD3F22B00000F4F /* MainMenu.xib */; };
@@ -35,6 +36,7 @@
 		667BBC0D1BD6ABAC007A3948 /* VideoWindowsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindowsContainer.swift; sourceTree = "<group>"; };
 		667BBC0F1BD6ADC7007A3948 /* VideoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
 		667BBC111BD6D797007A3948 /* VideoWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindowDelegate.swift; sourceTree = "<group>"; };
+		667BBC131BD6DE41007A3948 /* VideoWindowsContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindowsContainerTests.swift; sourceTree = "<group>"; };
 		66C1A1AC1BD3F22B00000F4F /* Overwatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overwatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C1A1B01BD3F22B00000F4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66C1A1B11BD3F22B00000F4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				66C1A1C21BD3F22B00000F4F /* URLParserTests.swift */,
+				667BBC131BD6DE41007A3948 /* VideoWindowsContainerTests.swift */,
 				66C1A1C01BD3F22B00000F4F /* Supporting Files */,
 			);
 			path = OverwatchTests;
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				667BBC141BD6DE41007A3948 /* VideoWindowsContainerTests.swift in Sources */,
 				66C1A1C31BD3F22B00000F4F /* URLParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -28,9 +28,7 @@ class URLParserTests: XCTestCase {
     "Xw2bTpyHGCE": "Xw2bTpyHGCE"
   ]
 
-  /*
-   * YouTube Tests
-   */
+  // MARK: - YouTube Tests
 
   func testThatItAcceptsValidYouTubeURL() {
     // Test each YouTube URL type
