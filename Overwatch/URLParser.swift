@@ -8,15 +8,24 @@
 
 import Foundation
 
+/**
+  Takes a URL fragment of a video (a URL with or without http, www, etc.) and produces
+  a full URL pointing to the video embed.
+*/
 class URLParser {
 
-  let codePattern = "[A-Za-z0-9_-]{11}"
-  var urlFragment: String
+  private let codePattern = "[A-Za-z0-9_-]{11}"
+  private var urlFragment: String
 
   init(urlFragment: String) {
     self.urlFragment = urlFragment
   }
 
+  /**
+    Checks whether the URL is from YouTube.
+
+    - Returns: True if the URL is from YouTube, false if not.
+  */
   func isYouTube() -> Bool {
     let pattern = "(((http(s?)://)?(www.)?((youtube.com/watch\\?(.*)v=)|youtu.be/|youtube.com/embed/)\(codePattern))|^\(codePattern)$)"
 
@@ -29,6 +38,11 @@ class URLParser {
     return matches > 0;
   }
 
+  /**
+    Creates the full URL for the intial URL fragment.
+
+    - Returns: A string of the full URL to the video.
+  */
   func url() -> String? {
     // Create regex for pulling out video code
     let regex = try! NSRegularExpression(pattern: codePattern, options: .CaseInsensitive)
