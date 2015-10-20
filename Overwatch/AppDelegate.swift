@@ -14,7 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var statusMenu: NSMenu!
   @IBOutlet weak var menuOpenClipboard: NSMenuItem!
 
-  var videoWindows = [NSWindow]()
+  var videoWindows = VideoWindowsContainer()
+
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -66,8 +67,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func actionResetPositions(sender: NSMenuItem) {
-    for (index, window) in videoWindows.enumerate() {
-      window.setFrame(frameForWindow(index), display: false, animate: true)
+    for window in videoWindows.windows {
+      window.resetPosition()
     }
   }
 
@@ -79,60 +80,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
    * Create a new video window
    */
   func createWindow(url: String) {
-    let windowIndex = videoWindows.count
-
-    // Default position and size for window
-    let frame = frameForWindow(windowIndex)
-
-    // Create a new NSWindow with default properties
-    let videoWindow = NSWindow(
-      contentRect: frame,
-      styleMask: NSTitledWindowMask | NSFullSizeContentViewWindowMask | NSResizableWindowMask | NSClosableWindowMask,
-      backing: .Buffered,
-      `defer`: false
-    )
-
-    // Style the window
-    videoWindow.titlebarAppearsTransparent = true
-    videoWindow.movableByWindowBackground = true
-    videoWindow.standardWindowButton(.ZoomButton)?.hidden = true
-    videoWindow.standardWindowButton(.MiniaturizeButton)?.hidden = true
-
-    // Create a NSWindowController to manage the window
-    let videoWindowController = NSWindowController(window: videoWindow)
-    videoWindowController.windowFrameAutosaveName = "overwatch_video_window_\(windowIndex)"
-
-    // If available, restore the last size and position of the window
-    videoWindow.setFrameUsingName("overwatch_video_window_\(windowIndex)")
-
-    // Create a new VideoViewController to display the video
-    let videoViewController = VideoViewController(nibName: nil, bundle: nil)!
-    videoViewController.url = NSURL(string: url)
-    videoWindow.contentView!.addSubview(videoViewController.view)
-    videoViewController.view.frame = (videoWindow.contentView! as NSView).bounds
-
-    // Add the window the the global list of opened windows
-    videoWindows.append(videoWindow)
-
-    // Finally, show the window!
-    videoWindow.makeKeyWindow()
-    videoWindowController.showWindow(nil)
-  }
-
-  /*
-   * Get the default position for a particlar window index
-   */
-  func frameForWindow(index: Int) -> CGRect {
-    // Default to a 16:9 ratio for YouTube
-    let width: CGFloat = 400
-    let height: CGFloat = 225
-
-    // Default to top-right, with multiple windows stacking below
-    let padding: CGFloat = 20
-    let x = (NSScreen.mainScreen()?.visibleFrame.width)! - width - padding
-    let y = (NSScreen.mainScreen()?.visibleFrame.height)! - (height + padding) * CGFloat(index + 1)
-
-    return CGRectMake(x, y, width, height)
+    if let window = VideoWindow(url: url) {
+      videoWindows.add(window)
+    }
   }
 
   func askForURL(invalid invalid: Bool = false, value: String = "") {
