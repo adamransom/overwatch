@@ -12,18 +12,22 @@ import XCTest
 @testable import Overwatch
 
 class VideoWindowsContainerTests: XCTestCase {
-  var subject: VideoWindowsContainer?
+  func testThatItAddsVideoWindow() {
+    let subject = VideoWindowsContainer()
 
-  override func setUp() {
-    super.setUp()
-
-    subject = VideoWindowsContainer()
+    if let window = VideoWindow(url: "") {
+      subject.add(window)
+      XCTAssertEqual(subject.windows.first, window)
+    }
   }
 
-  func testThatItAddsVideoWindow() {
+  func testThatItRemovesWhenWindowCloses() {
+    let subject = VideoWindowsContainer()
+
     if let window = VideoWindow(url: "") {
-      subject!.add(window)
-      XCTAssertEqual(subject!.windows.first, window)
+      subject.add(window)
+      subject.windowWillClose(window)
+      XCTAssertEqual(subject.windows.count, 0)
     }
   }
 }

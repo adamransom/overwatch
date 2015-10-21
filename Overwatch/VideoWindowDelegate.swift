@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol VideoWindowDelegate {
+protocol VideoWindowDelegate : class {
   /**
     Tells the delegate that the window is about to close.
 

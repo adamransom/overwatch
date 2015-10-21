@@ -14,14 +14,6 @@ class VideoViewController: NSViewController {
   var url: NSURL?
   private var webView: WKWebView?
 
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-  }
-
-  override init?(nibName: String!, bundle: NSBundle!) {
-    super.init(nibName: nibName, bundle: bundle)
-  }
-
   override func loadView() {
     webView = WKWebView()
     view = webView!

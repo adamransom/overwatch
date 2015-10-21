@@ -17,7 +17,7 @@ class VideoWindow : NSObject, NSWindowDelegate {
   /// The URL of the video for the window
   var url: String
   /// The delegate for the window
-  var delegate: VideoWindowDelegate?
+  weak var delegate: VideoWindowDelegate?
   /// The index of the window in its container
   var index: Int? {
     get { return self.index_ }
@@ -52,6 +52,12 @@ class VideoWindow : NSObject, NSWindowDelegate {
     if (self.window_ == nil || self.controller_ == nil) {
       return nil
     }
+  }
+
+  deinit {
+    // Need to explicitly set the contentView to nil here, in order
+    // to properly release the WKWebView.
+    self.window_?.contentView = nil
   }
 
   /**
@@ -89,18 +95,19 @@ class VideoWindow : NSObject, NSWindowDelegate {
     )
 
     // Set up the titlebar
-    if (self.window_ != nil) {
-      self.window_!.delegate = self
-      self.window_!.titlebarAppearsTransparent = true
-      self.window_!.movableByWindowBackground = true
-      self.window_!.standardWindowButton(.ZoomButton)?.hidden = true
-      self.window_!.standardWindowButton(.MiniaturizeButton)?.hidden = true
+    if let window = self.window_ {
+      window.delegate = self
+      window.titlebarAppearsTransparent = true
+      window.movableByWindowBackground = true
+      window.standardWindowButton(.ZoomButton)?.hidden = true
+      window.standardWindowButton(.MiniaturizeButton)?.hidden = true
 
       // Add the VideoViewcontroller
       if let viewController = VideoViewController(nibName: nil, bundle: nil) {
         viewController.url = NSURL(string: self.url)
-        viewController.view.frame = (self.window_!.contentView! as NSView).bounds
-        self.window_!.contentView!.addSubview(viewController.view)
+        window.contentView = viewController.view
+        window.contentViewController = viewController
+        viewController.view.frame = window.contentView!.bounds
       }
     }
   }
