@@ -38,5 +38,7 @@ class VideoWindowsContainer : VideoWindowDelegate {
     window.delegate = self
     self.windows_.append(window)
     window.show()
+    // Activate the app to give the new window focus (this is questionable and might become an option later).
+    NSRunningApplication.currentApplication().activateWithOptions(.ActivateIgnoringOtherApps)
   }
 }
