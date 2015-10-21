@@ -13,7 +13,7 @@ import Cocoa
   Represents one video, hovering over the desktop. A wrapper around
   NSWindowController and NSWindow.
 */
-class VideoWindow : NSObject, NSWindowDelegate {
+class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   /// The URL of the video for the window
   var url: String
   /// The delegate for the window
@@ -81,6 +81,16 @@ class VideoWindow : NSObject, NSWindowDelegate {
     self.delegate?.windowWillClose(self)
   }
 
+  // MARK: - VideoViewControllerDelegate Functions
+
+  func mouseEntered() {
+    self.window_!.standardWindowButton(.CloseButton)?.hidden = false
+  }
+
+  func mouseExited() {
+    self.window_!.standardWindowButton(.CloseButton)?.hidden = true
+  }
+
   // MARK: - Private Functions
 
   /**
@@ -101,9 +111,11 @@ class VideoWindow : NSObject, NSWindowDelegate {
       window.movableByWindowBackground = true
       window.standardWindowButton(.ZoomButton)?.hidden = true
       window.standardWindowButton(.MiniaturizeButton)?.hidden = true
+      window.standardWindowButton(.CloseButton)?.hidden = true
 
       // Add the VideoViewcontroller
       if let viewController = VideoViewController(nibName: nil, bundle: nil) {
+        viewController.delegate = self
         viewController.url = NSURL(string: self.url)
         window.contentView = viewController.view
         window.contentViewController = viewController
