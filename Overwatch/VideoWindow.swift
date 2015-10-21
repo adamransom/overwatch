@@ -64,7 +64,7 @@ class VideoWindow : NSObject, NSWindowDelegate {
     Shows the window.
   */
   func show() {
-    self.window_!.makeKeyWindow()
+    self.window_!.level = Int(CGWindowLevelForKey(.StatusWindowLevelKey))
     self.controller_!.showWindow(nil)
   }
 
