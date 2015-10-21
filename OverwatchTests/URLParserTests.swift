@@ -61,7 +61,7 @@ class URLParserTests: XCTestCase {
       let subject = URLParser(urlFragment: fragment)
       let url = subject.url();
 
-      XCTAssertEqual(url, "https://www.youtube.com/embed/\(code)?autoplay=1")
+      XCTAssertEqual(url, "https://www.youtube.com/embed/\(code)?autoplay=1&iv_load_policy=3&modestbranding=1&fs=0&showinfo=0")
     }
   }
 

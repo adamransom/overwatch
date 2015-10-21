@@ -58,7 +58,7 @@ class URLParser {
       let string = self.urlFragment as NSString
       let videoCode = string.substringWithRange(match)
 
-      return "https://www.youtube.com/embed/\(videoCode)?autoplay=1"
+      return "https://www.youtube.com/embed/\(videoCode)?autoplay=1&iv_load_policy=3&modestbranding=1&fs=0&showinfo=0"
     }
 
     return nil
