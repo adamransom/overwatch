@@ -13,7 +13,7 @@ A simple application which allows YouTube videos be watched out of the browser. 
 
 - [x] ~~Add parsing of many types of YouTube URLs~~
 - [ ] Resizing videos doesn't work yet
-- [ ] Only show "Close" button when hovering over videos
-- [ ] Add "Always On Top" option
+- [x] ~~Only show "Close" button when hovering over videos~~
+- [x] ~~Make videos always on top~~
 - [ ] Allow videos to be made transparent (optionally becoming more opaque when hovering over)
 - [ ] Much more, but it's late now and this is enough to be getting on with...
