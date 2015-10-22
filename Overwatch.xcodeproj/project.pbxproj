@@ -20,6 +20,7 @@
 		66C1A1CD1BD3F32600000F4F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C1A1CC1BD3F32600000F4F /* WebKit.framework */; };
 		66C1A1D01BD3F7F100000F4F /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C1A1CE1BD3F7F100000F4F /* VideoViewController.swift */; };
 		66C1A1D11BD3F7F100000F4F /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C1A1CF1BD3F7F100000F4F /* VideoViewController.xib */; };
+		66FEA2611BD9707D003C79BD /* overwatch_512.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FEA2601BD9707D003C79BD /* overwatch_512.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		66C1A1CC1BD3F32600000F4F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		66C1A1CE1BD3F7F100000F4F /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		66C1A1CF1BD3F7F100000F4F /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		66FEA2601BD9707D003C79BD /* overwatch_512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = overwatch_512.png; path = Images.xcassets/AppIcon.appiconset/overwatch_512.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		66C1A1AE1BD3F22B00000F4F /* Overwatch */ = {
 			isa = PBXGroup;
 			children = (
+				66FEA2621BD976C2003C79BD /* Images */,
 				66C1A1B11BD3F22B00000F4F /* AppDelegate.swift */,
 				66C1A1B31BD3F22B00000F4F /* Images.xcassets */,
 				66C1A1B51BD3F22B00000F4F /* MainMenu.xib */,
@@ -132,6 +135,14 @@
 				66C1A1C11BD3F22B00000F4F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		66FEA2621BD976C2003C79BD /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				66FEA2601BD9707D003C79BD /* overwatch_512.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 			files = (
 				66C1A1B41BD3F22B00000F4F /* Images.xcassets in Resources */,
 				66C1A1B71BD3F22B00000F4F /* MainMenu.xib in Resources */,
+				66FEA2611BD9707D003C79BD /* overwatch_512.png in Resources */,
 				66C1A1D11BD3F7F100000F4F /* VideoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

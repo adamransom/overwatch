@@ -18,6 +18,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
+  func applicationWillFinishLaunching(aNotification: NSNotification) {
+    // Handle URL scheme (overwatch://)
+    let appleEventManager:NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
+    appleEventManager.setEventHandler(
+      self,
+      andSelector: "handleGetURLEvent:replyEvent:",
+      forEventClass: AEEventClass(kInternetEventClass),
+      andEventID: AEEventID(kAEGetURL)
+    )
+  }
+
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     let icon = NSImage(named: "StatusIcon")
     icon?.template = true
@@ -28,6 +39,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationWillTerminate(aNotification: NSNotification) {
     // Insert code here to tear down your application
+  }
+
+  func handleGetURLEvent(event: NSAppleEventDescriptor, replyEvent: NSAppleEventDescriptor) {
+    if var url = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
+      url = url.stringByReplacingOccurrencesOfString("overwatch://", withString: "")
+      let parser = URLParser(urlFragment: url)
+
+      if (parser.isYouTube()) {
+        createWindow(parser.url())
+      } else {
+        let alert = NSAlert();
+        alert.messageText = "Sorry, that doesn't seem to be a YouTube video :("
+        alert.addButtonWithTitle("OK")
+        alert.runModal()
+      }
+    }
   }
 
   override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
@@ -62,7 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let parser = URLParser(urlFragment: urlFragment!)
 
         if (parser.isYouTube()) {
-          createWindow(parser.url()!)
+          createWindow(parser.url())
         }
       }
     }
@@ -81,8 +108,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   /*
    * Create a new video window
    */
-  func createWindow(url: String) {
-    if let window = VideoWindow(url: url) {
+  func createWindow(url: String?) {
+    if (url == nil) { return }
+
+    if let window = VideoWindow(url: url!) {
       videoWindows.add(window)
     }
   }
