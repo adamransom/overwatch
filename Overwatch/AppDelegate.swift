@@ -40,6 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let urlFragment = items[0].stringForType("public.utf8-plain-text")
         if (urlFragment != nil) {
           return URLParser(urlFragment: urlFragment!).isYouTube()
+        } else {
+          return false
         }
       }
     }
