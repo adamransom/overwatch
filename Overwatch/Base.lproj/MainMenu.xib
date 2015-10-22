@@ -675,14 +675,14 @@
                         <action selector="actionOpenURL:" target="Voe-Tx-rLC" id="ulQ-eK-b15"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Open from Clipboard..." id="yZi-qy-0Q2">
+                <menuItem title="Open from Clipboard" id="yZi-qy-0Q2">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="actionOpenClipboard:" target="Voe-Tx-rLC" id="yRP-nU-4tR"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="SX0-X8-pIF"/>
-                <menuItem title="Reset positions..." id="MzH-V6-Xkf">
+                <menuItem title="Reset Positions" id="MzH-V6-Xkf">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="actionResetPositions:" target="Voe-Tx-rLC" id="KfR-vB-lM0"/>
