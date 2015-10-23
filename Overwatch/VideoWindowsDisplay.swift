@@ -1,5 +1,5 @@
 //
-//  VideoWindowsContainer.swift
+//  VideoWindowsDisplay.swift
 //  Overwatch
 //
 //  Created by adam on 10/20/15.
@@ -10,9 +10,9 @@ import Foundation
 import Cocoa
 
 /**
-  Keeps track of all the video windows currently loaded.
+  Handles displaying all the video windows
 */
-class VideoWindowsContainer : VideoWindowDelegate {
+class VideoWindowsDisplay : VideoWindowDelegate {
   /// List of windows in the container
   var windows: [VideoWindow] {
     return self.windows_
@@ -29,7 +29,7 @@ class VideoWindowsContainer : VideoWindowDelegate {
   }
 
   /**
-    Adds a window to the container, automatically showing it on the screen.
+    Adds a window to the display, automatically showing it on the screen.
 
     - Parameter window: The video window to be added.
   */

@@ -1,5 +1,5 @@
 //
-//  VideoWindowsContainerTests.swift
+//  VideoWindowsDisplayTests.swift
 //  Overwatch
 //
 //  Created by adam on 10/20/15.
@@ -11,9 +11,9 @@ import XCTest
 
 @testable import Overwatch
 
-class VideoWindowsContainerTests: XCTestCase {
+class VideoWindowsDisplayTests: XCTestCase {
   func testThatItAddsVideoWindow() {
-    let subject = VideoWindowsContainer()
+    let subject = VideoWindowsDisplay()
 
     if let window = VideoWindow(url: "") {
       subject.add(window)
@@ -22,7 +22,7 @@ class VideoWindowsContainerTests: XCTestCase {
   }
 
   func testThatItRemovesWhenWindowCloses() {
-    let subject = VideoWindowsContainer()
+    let subject = VideoWindowsDisplay()
 
     if let window = VideoWindow(url: "") {
       subject.add(window)

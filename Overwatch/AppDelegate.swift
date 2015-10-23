@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var statusMenu: NSMenu!
   @IBOutlet weak var menuOpenClipboard: NSMenuItem!
 
-  var videoWindows = VideoWindowsContainer()
+  var videoWindows = VideoWindowsDisplay()
 
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
