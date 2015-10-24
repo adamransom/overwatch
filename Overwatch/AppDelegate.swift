@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var menuOpenClipboard: NSMenuItem!
 
   var videoWindows = VideoWindowsDisplay()
+  var preferencesWindow: NSWindow?
 
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
@@ -35,10 +36,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     statusItem.image = icon
     statusItem.menu = statusMenu
+
+    NSUserDefaults.standardUserDefaults().addObserver(
+      self,
+      forKeyPath: "video_opacity",
+      options: .New,
+      context: nil
+    )
+
+    // Register user defaults
+    let appDefaults = [ "video_opacity": NSNumber(float: 1.0) ]
+    NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
     // Insert code here to tear down your application
+  }
+
+
+  // MARK: - NSObject Functions
+
+  override func observeValueForKeyPath(
+    keyPath: String?,
+    ofObject object: AnyObject?,
+    change: [String : AnyObject]?,
+    context: UnsafeMutablePointer<Void>
+  ) {
+    if (keyPath == "video_opacity" && change != nil) {
+      self.videoWindows.opacity = Float(change!["new"] as! NSNumber)
+    }
   }
 
   func handleGetURLEvent(event: NSAppleEventDescriptor, replyEvent: NSAppleEventDescriptor) {
@@ -74,6 +100,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     return true
+  }
+
+  @IBAction func actionPreferences(sender: NSMenuItem) {
+    if self.preferencesWindow == nil {
+      self.preferencesWindow = NSWindow(
+        contentRect: NSMakeRect(0, 0, 300, 98),
+        styleMask: NSTitledWindowMask | NSClosableWindowMask,
+        backing: .Buffered,
+        `defer`: true
+      )
+
+      if let window = self.preferencesWindow {
+        window.center()
+        window.releasedWhenClosed = false
+        window.title = "Overwatch Preferences"
+
+        if let viewController = PreferencesViewController(nibName: "PreferencesViewController", bundle: nil) {
+          window.contentViewController = viewController
+          self.preferencesWindow!.contentView = viewController.view
+        }
+      }
+    }
+
+    NSRunningApplication.currentApplication().activateWithOptions(.ActivateIgnoringOtherApps)
+    self.preferencesWindow!.makeKeyAndOrderFront(nil)
   }
 
   @IBAction func actionOpenURL(sender: NSMenuItem) {

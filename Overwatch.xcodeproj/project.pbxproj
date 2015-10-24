@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661E144F1BDA512E0069F423 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E144D1BDA512E0069F423 /* PreferencesViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		661E14501BDA512E0069F423 /* PreferencesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 661E144E1BDA512E0069F423 /* PreferencesViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		667A51E01BD5692E000649F4 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667A51DF1BD5692E000649F4 /* URLParser.swift */; settings = {ASSET_TAGS = (); }; };
 		667BBC0E1BD6ABAC007A3948 /* VideoWindowsDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC0D1BD6ABAC007A3948 /* VideoWindowsDisplay.swift */; settings = {ASSET_TAGS = (); }; };
 		667BBC101BD6ADC7007A3948 /* VideoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667BBC0F1BD6ADC7007A3948 /* VideoWindow.swift */; settings = {ASSET_TAGS = (); }; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		661E144D1BDA512E0069F423 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
+		661E144E1BDA512E0069F423 /* PreferencesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesViewController.xib; sourceTree = "<group>"; };
 		667A51DF1BD5692E000649F4 /* URLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
 		667BBC0D1BD6ABAC007A3948 /* VideoWindowsDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindowsDisplay.swift; sourceTree = "<group>"; };
 		667BBC0F1BD6ADC7007A3948 /* VideoWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoWindow.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				667BBC0F1BD6ADC7007A3948 /* VideoWindow.swift */,
 				667BBC111BD6D797007A3948 /* VideoWindowDelegate.swift */,
 				668C4E681BD82A9E00F85566 /* VideoViewControllerDelegate.swift */,
+				661E144D1BDA512E0069F423 /* PreferencesViewController.swift */,
+				661E144E1BDA512E0069F423 /* PreferencesViewController.xib */,
 			);
 			path = Overwatch;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				66C1A1B71BD3F22B00000F4F /* MainMenu.xib in Resources */,
 				66FEA2611BD9707D003C79BD /* overwatch_512.png in Resources */,
 				66C1A1D11BD3F7F100000F4F /* VideoViewController.xib in Resources */,
+				661E14501BDA512E0069F423 /* PreferencesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +258,7 @@
 				66C1A1D01BD3F7F100000F4F /* VideoViewController.swift in Sources */,
 				667BBC0E1BD6ABAC007A3948 /* VideoWindowsDisplay.swift in Sources */,
 				668C4E691BD82A9E00F85566 /* VideoViewControllerDelegate.swift in Sources */,
+				661E144F1BDA512E0069F423 /* PreferencesViewController.swift in Sources */,
 				667A51E01BD5692E000649F4 /* URLParser.swift in Sources */,
 				66C1A1B21BD3F22B00000F4F /* AppDelegate.swift in Sources */,
 				667BBC121BD6D797007A3948 /* VideoWindowDelegate.swift in Sources */,

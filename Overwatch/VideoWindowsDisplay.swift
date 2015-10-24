@@ -17,8 +17,18 @@ class VideoWindowsDisplay : VideoWindowDelegate {
   var windows: [VideoWindow] {
     return self.windows_
   }
+  /// The opacity of the display
+  var opacity: Float = 1.0 {
+    didSet {
+      for window in self.windows {
+        window.opacity = self.opacity
+      }
+    }
+  }
 
   private var windows_ = [VideoWindow]()
+
+  // MARK: - VideoWindow Delegate Functions
 
   func windowWillClose(window: VideoWindow) {
     // Find the window and remove it, thus releasing the underlying
@@ -36,6 +46,8 @@ class VideoWindowsDisplay : VideoWindowDelegate {
   func add(window: VideoWindow) {
     window.index = self.windows_.count
     window.delegate = self
+    window.opacity = self.opacity
+
     self.windows_.append(window)
     window.show()
     // Activate the app to give the new window focus (this is questionable and might become an option later).

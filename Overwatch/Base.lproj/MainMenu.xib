@@ -681,6 +681,13 @@
                         <action selector="actionOpenClipboard:" target="Voe-Tx-rLC" id="yRP-nU-4tR"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="Lax-3c-Gqd"/>
+                <menuItem title="Preferences..." id="J8l-dd-tSH">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="actionPreferences:" target="Voe-Tx-rLC" id="EjU-M8-xVI"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="SX0-X8-pIF"/>
                 <menuItem title="Reset Positions" id="MzH-V6-Xkf">
                     <modifierMask key="keyEquivalentModifierMask"/>

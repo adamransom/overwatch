@@ -30,4 +30,30 @@ class VideoWindowsDisplayTests: XCTestCase {
       XCTAssertEqual(subject.windows.count, 0)
     }
   }
+
+  func testThatItSetsOpacityOfWindowsWhenChanged() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      let newOpacity: Float = 0.5
+
+      XCTAssertNotEqual(window.opacity, newOpacity)
+      subject.add(window)
+      subject.opacity = newOpacity
+      XCTAssertEqual(window.opacity, newOpacity)
+    }
+  }
+
+  func testThatItSetsOpacityOfWindowWhenAdded() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      let newOpacity: Float = 0.5
+
+      subject.opacity = newOpacity
+      XCTAssertNotEqual(window.opacity, newOpacity)
+      subject.add(window)
+      XCTAssertEqual(window.opacity, newOpacity)
+    }
+  }
 }
