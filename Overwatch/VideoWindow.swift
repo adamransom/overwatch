@@ -27,6 +27,12 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
       updateFrame();
     }
   }
+  /// The opacity level of the window
+  var opacity: Float = 1.0 {
+    didSet {
+      self.window_!.alphaValue = CGFloat(self.opacity)
+    }
+  }
 
   private let mask = NSTitledWindowMask |
                      NSFullSizeContentViewWindowMask |
