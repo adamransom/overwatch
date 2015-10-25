@@ -152,10 +152,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  @IBAction func actionQuit(sender: NSMenuItem) {
-    NSApplication.sharedApplication().terminate(self)
-  }
-
   /*
    * Create a new video window
    */
