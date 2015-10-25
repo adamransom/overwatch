@@ -35,6 +35,16 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   }
   /// Whether or not to become opaque on hover
   var opaqueOnHover = false
+  /// Whether or not to show on all Spaces
+  var appearOnAllSpaces = false {
+    didSet {
+      if (self.appearOnAllSpaces) {
+        self.window_!.collectionBehavior = .CanJoinAllSpaces
+      } else {
+        self.window_!.collectionBehavior = .Default
+      }
+    }
+  }
 
   private let mask = NSTitledWindowMask |
                      NSFullSizeContentViewWindowMask |
@@ -123,7 +133,6 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
       window.standardWindowButton(.ZoomButton)?.hidden = true
       window.standardWindowButton(.MiniaturizeButton)?.hidden = true
       window.standardWindowButton(.CloseButton)?.hidden = true
-      window.collectionBehavior = .CanJoinAllSpaces
 
       // Add the VideoViewcontroller
       if let viewController = VideoViewController(nibName: nil, bundle: nil) {

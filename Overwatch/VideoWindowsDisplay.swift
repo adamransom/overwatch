@@ -33,6 +33,14 @@ class VideoWindowsDisplay : VideoWindowDelegate {
       }
     }
   }
+  /// Whether or not to show viedos on all Spaces
+  var appearOnAllSpaces = false {
+    didSet {
+      for window in self.windows {
+        window.appearOnAllSpaces = self.appearOnAllSpaces
+      }
+    }
+  }
 
   private var windows_ = [VideoWindow]()
 
@@ -56,6 +64,7 @@ class VideoWindowsDisplay : VideoWindowDelegate {
     window.delegate = self
     window.opacity = self.opacity
     window.opaqueOnHover = self.opaqueOnHover
+    window.appearOnAllSpaces = self.appearOnAllSpaces
 
     self.windows_.append(window)
     window.show()

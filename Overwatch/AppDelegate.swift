@@ -39,11 +39,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     observeUserDefault("video_opacity")
     observeUserDefault("opaque_on_hover")
+    observeUserDefault("appear_on_all_spaces")
 
     // Register user defaults
     let appDefaults = [
       "video_opacity": NSNumber(float: 1.0),
-      "opaque_on_hover": false
+      "opaque_on_hover": false,
+      "appear_on_all_spaces": false
     ]
     NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
   }
@@ -68,6 +70,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         break
       case "opaque_on_hover":
         self.videoWindows.opaqueOnHover = change!["new"] as! Bool
+        break
+      case "appear_on_all_spaces":
+        self.videoWindows.appearOnAllSpaces = change!["new"] as! Bool
         break
       default:
         break

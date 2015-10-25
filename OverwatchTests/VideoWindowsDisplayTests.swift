@@ -78,4 +78,26 @@ class VideoWindowsDisplayTests: XCTestCase {
       XCTAssertEqual(window.opaqueOnHover, true)
     }
   }
+
+  func testThatItSetsAppearOnAllSpacesOfWindowsWhenChanged() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      XCTAssertNotEqual(window.appearOnAllSpaces, true)
+      subject.add(window)
+      subject.appearOnAllSpaces = true
+      XCTAssertEqual(window.appearOnAllSpaces, true)
+    }
+  }
+
+  func testThatItSetsAppearOnAllSpacesOfWindowsWhenAdded() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      subject.appearOnAllSpaces = true
+      XCTAssertNotEqual(window.appearOnAllSpaces, true)
+      subject.add(window)
+      XCTAssertEqual(window.appearOnAllSpaces, true)
+    }
+  }
 }
