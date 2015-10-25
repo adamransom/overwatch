@@ -56,4 +56,26 @@ class VideoWindowsDisplayTests: XCTestCase {
       XCTAssertEqual(window.opacity, newOpacity)
     }
   }
+
+  func testThatItSetsOpaqueOnHoverOfWindowsWhenChanged() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      XCTAssertNotEqual(window.opaqueOnHover, true)
+      subject.add(window)
+      subject.opaqueOnHover = true
+      XCTAssertEqual(window.opaqueOnHover, true)
+    }
+  }
+
+  func testThatItSetsOpaqueOnHoverOfWindowsWhenAdded() {
+    let subject = VideoWindowsDisplay()
+
+    if let window = VideoWindow(url: "") {
+      subject.opaqueOnHover = true
+      XCTAssertNotEqual(window.opaqueOnHover, true)
+      subject.add(window)
+      XCTAssertEqual(window.opaqueOnHover, true)
+    }
+  }
 }

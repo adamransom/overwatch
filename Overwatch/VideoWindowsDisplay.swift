@@ -25,6 +25,14 @@ class VideoWindowsDisplay : VideoWindowDelegate {
       }
     }
   }
+  /// Whether or not to become opaque on hover
+  var opaqueOnHover = false {
+    didSet {
+      for window in self.windows {
+        window.opaqueOnHover = self.opaqueOnHover
+      }
+    }
+  }
 
   private var windows_ = [VideoWindow]()
 
@@ -47,6 +55,7 @@ class VideoWindowsDisplay : VideoWindowDelegate {
     window.index = self.windows_.count
     window.delegate = self
     window.opacity = self.opacity
+    window.opaqueOnHover = self.opaqueOnHover
 
     self.windows_.append(window)
     window.show()

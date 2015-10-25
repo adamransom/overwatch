@@ -37,15 +37,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     statusItem.image = icon
     statusItem.menu = statusMenu
 
-    NSUserDefaults.standardUserDefaults().addObserver(
-      self,
-      forKeyPath: "video_opacity",
-      options: .New,
-      context: nil
-    )
+    observeUserDefault("video_opacity")
+    observeUserDefault("opaque_on_hover")
 
     // Register user defaults
-    let appDefaults = [ "video_opacity": NSNumber(float: 1.0) ]
+    let appDefaults = [
+      "video_opacity": NSNumber(float: 1.0),
+      "opaque_on_hover": false
+    ]
     NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
   }
 
@@ -62,8 +61,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     change: [String : AnyObject]?,
     context: UnsafeMutablePointer<Void>
   ) {
-    if (keyPath == "video_opacity" && change != nil) {
-      self.videoWindows.opacity = Float(change!["new"] as! NSNumber)
+    if (keyPath != nil && change != nil) {
+      switch keyPath! {
+      case "video_opacity":
+        self.videoWindows.opacity = Float(change!["new"] as! NSNumber)
+        break
+      case "opaque_on_hover":
+        self.videoWindows.opaqueOnHover = change!["new"] as! Bool
+        break
+      default:
+        break
+      }
     }
   }
 
@@ -193,6 +201,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     default:
       break
     }
+  }
+
+  func observeUserDefault(keyPath: String) {
+    NSUserDefaults.standardUserDefaults().addObserver(
+      self,
+      forKeyPath: keyPath,
+      options: .New,
+      context: nil
+    )
   }
 
 }

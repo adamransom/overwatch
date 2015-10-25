@@ -33,6 +33,8 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
       self.window_!.alphaValue = CGFloat(self.opacity)
     }
   }
+  /// Whether or not to become opaque on hover
+  var opaqueOnHover = false
 
   private let mask = NSTitledWindowMask |
                      NSFullSizeContentViewWindowMask |
@@ -42,6 +44,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   private var controller_: NSWindowController?
   private var window_: NSWindow?
   private var index_: Int?
+  private var fadedUp_ = false
 
   /**
     Creates a new VideoWindow.
@@ -91,10 +94,12 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
 
   func mouseEntered() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = false
+    fadeUp();
   }
 
   func mouseExited() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = true
+    fadeDown();
   }
 
   // MARK: - Private Functions
@@ -170,5 +175,33 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
     }
 
     return CGRectMake(x, y, width, height)
+  }
+
+  /**
+    Fades the window from current opacity up to fully opaque (if not
+    already fully opaque)
+  */
+  func fadeUp() {
+    if (self.opaqueOnHover && self.opacity < 1.0) {
+      self.fadedUp_ = true
+      NSAnimationContext.runAnimationGroup({ (context) -> Void in
+        self.window_!.animator().alphaValue = 1
+        }, completionHandler: { () -> Void in }
+      )
+    }
+  }
+
+  /**
+    Fades the window from fully opaque to original opacity (if not set
+    to be fully opaque)
+  */
+  func fadeDown() {
+    if (self.fadedUp_ && self.opacity < 1.0) {
+      self.fadedUp_ = false
+      NSAnimationContext.runAnimationGroup({ (context) -> Void in
+        self.window_!.animator().alphaValue = CGFloat(self.opacity)
+        }, completionHandler: { () -> Void in }
+      )
+    }
   }
 }
