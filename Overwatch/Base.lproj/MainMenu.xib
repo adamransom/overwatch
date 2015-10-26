@@ -13,8 +13,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Overwatch" customModuleProvider="target">
             <connections>
-                <outlet property="menuOpenClipboard" destination="yZi-qy-0Q2" id="mui-6t-D03"/>
-                <outlet property="statusMenu" destination="5NF-ya-y40" id="XvQ-I6-1ps"/>
+                <outlet property="menuOpenClipboard_" destination="yZi-qy-0Q2" id="yzA-ZB-hMx"/>
+                <outlet property="statusMenu_" destination="5NF-ya-y40" id="Vm7-e0-f2u"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
