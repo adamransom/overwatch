@@ -41,18 +41,10 @@ class VideoWindowsDisplay : VideoWindowDelegate {
       }
     }
   }
-
+  // MARK: Private Variables
   private var windows_ = [VideoWindow]()
 
-  // MARK: - VideoWindow Delegate Functions
-
-  func windowWillClose(window: VideoWindow) {
-    // Find the window and remove it, thus releasing the underlying
-    // NSWindow and NSWindowController
-    if let index = self.windows_.indexOf(window) {
-      self.windows_.removeAtIndex(index)
-    }
-  }
+  // MARK: - Public Functions
 
   /**
     Adds a window to the display, automatically showing it on the screen.
@@ -70,5 +62,15 @@ class VideoWindowsDisplay : VideoWindowDelegate {
     window.show()
     // Activate the app to give the new window focus (this is questionable and might become an option later).
     NSRunningApplication.currentApplication().activateWithOptions(.ActivateIgnoringOtherApps)
+  }
+
+  // MARK: - VideoWindowDelegate Functions
+
+  func windowWillClose(window: VideoWindow) {
+    // Find the window and remove it, thus releasing the underlying
+    // NSWindow and NSWindowController
+    if let index = self.windows_.indexOf(window) {
+      self.windows_.removeAtIndex(index)
+    }
   }
 }

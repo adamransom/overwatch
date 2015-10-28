@@ -12,7 +12,6 @@ import XCTest
 @testable import Overwatch
 
 class URLParserTests: XCTestCase {
-
   let fragments = [
     "https://www.youtube.com/watch?autoplay=1&v=Fb6xOVdkaLM": "Fb6xOVdkaLM",
     "https://www.youtube.com/watch?v=Fb6xOVdkaLM": "Fb6xOVdkaLM",
@@ -64,5 +63,4 @@ class URLParserTests: XCTestCase {
       XCTAssertEqual(url, "https://www.youtube.com/embed/\(code)?autoplay=1&iv_load_policy=3&modestbranding=1&fs=0&showinfo=0")
     }
   }
-
 }

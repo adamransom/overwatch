@@ -45,8 +45,8 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
       }
     }
   }
-
-  private let mask = NSTitledWindowMask |
+  // MARK: Private Variables
+  private let mask_ = NSTitledWindowMask |
                      NSFullSizeContentViewWindowMask |
                      NSResizableWindowMask |
                      NSClosableWindowMask
@@ -55,6 +55,8 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   private var window_: NSWindow?
   private var index_: Int?
   private var fadedUp_ = false
+
+  // MARK: - Initiation
 
   /**
     Creates a new VideoWindow.
@@ -78,6 +80,8 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
     // to properly release the WKWebView.
     self.window_?.contentView = nil
   }
+
+  // MARK: - Public Functions
 
   /**
     Shows the window.
@@ -120,7 +124,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   private func createWindow() {
     self.window_ = NSWindow(
       contentRect: defaultFrame(),
-      styleMask: self.mask,
+      styleMask: self.mask_,
       backing: .Buffered,
       `defer`: true
     )

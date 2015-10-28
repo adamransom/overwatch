@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private let statusItem_ = NSStatusBar.systemStatusBar()
                                        .statusItemWithLength(NSSquareStatusItemLength)
 
-  // MARK: - NSApplicationDelegate Methods
+  // MARK: - NSApplicationDelegate Functions
 
   func applicationWillFinishLaunching(aNotification: NSNotification) {
     setupURLScheme()

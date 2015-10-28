@@ -10,12 +10,14 @@ import Cocoa
 import WebKit
 
 class VideoViewController: NSViewController {
-
+  // The URL to be loaded into the WKWebView
   var url: NSURL?
+  // The delegate that will handle mouse movement
   weak var delegate: VideoViewControllerDelegate?
-
+  // MARK: Private Variables
   private var webView_: WKWebView?
 
+  // MARK: - Overrides
   override func loadView() {
     self.webView_ = WKWebView()
     view = self.webView_!
