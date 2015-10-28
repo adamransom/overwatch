@@ -137,6 +137,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
       window.standardWindowButton(.ZoomButton)?.hidden = true
       window.standardWindowButton(.MiniaturizeButton)?.hidden = true
       window.standardWindowButton(.CloseButton)?.hidden = true
+      window.backgroundColor = NSColor.blackColor()
 
       // Add the VideoViewcontroller
       if let viewController = VideoViewController(nibName: nil, bundle: nil) {

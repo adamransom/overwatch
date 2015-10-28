@@ -9,7 +9,7 @@
 import Cocoa
 import WebKit
 
-class VideoViewController: NSViewController {
+class VideoViewController: NSViewController, WKNavigationDelegate {
   // The URL to be loaded into the WKWebView
   var url: NSURL?
   // The delegate that will handle mouse movement
@@ -20,6 +20,9 @@ class VideoViewController: NSViewController {
   // MARK: - Overrides
   override func loadView() {
     self.webView_ = WKWebView()
+    self.webView_!.navigationDelegate = self
+    self.webView_!.hidden = true
+
     view = self.webView_!
   }
 
@@ -46,5 +49,11 @@ class VideoViewController: NSViewController {
 
   override func mouseExited(theEvent: NSEvent) {
     self.delegate?.mouseExited()
+  }
+
+  // MARK: - WKNavigationDelegate Functions
+
+  func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    self.webView_?.hidden = false
   }
 }
