@@ -19,7 +19,7 @@
                     <rect key="frame" x="118" y="123" width="164" height="21"/>
                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="Mas-4h-8HV"/>
                     <connections>
-                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.video_opacity" id="GXR-vj-3ti"/>
+                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.videoOpacity" id="yJ9-G3-n6U"/>
                     </connections>
                 </slider>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PMA-RG-QaC">
@@ -37,7 +37,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.opaque_on_hover" id="yWB-mI-5bs"/>
+                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.opaqueOnHover" id="4uB-zP-z52"/>
                     </connections>
                 </button>
                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VmT-4T-FjJ">
@@ -47,7 +47,7 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.appear_on_all_spaces" id="zny-Hy-Dss"/>
+                        <binding destination="ajD-A6-Jgn" name="value" keyPath="values.appearOnAllSpaces" id="Y6Z-zq-OaB"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3kU-9k-QVR">

@@ -8,6 +8,15 @@
 
 import Cocoa
 
+/**
+  Constants representing the User Defaults for the application.
+*/
+struct DefaultsKeys {
+  static let VideoOpacity = "videoOpacity"
+  static let OpaqueOnHover = "opaqueOnHover"
+  static let AppearOnAllSpaces = "appearOnAllSpaces"
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
   // MARK: IB Outlets
@@ -40,13 +49,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   ) {
     if (keyPath != nil && change != nil) {
       switch keyPath! {
-      case "video_opacity":
+      case DefaultsKeys.VideoOpacity:
         self.videoDisplay_.opacity = Float(change!["new"] as! NSNumber)
         break
-      case "opaque_on_hover":
+      case DefaultsKeys.OpaqueOnHover:
         self.videoDisplay_.opaqueOnHover = change!["new"] as! Bool
         break
-      case "appear_on_all_spaces":
+      case DefaultsKeys.AppearOnAllSpaces:
         self.videoDisplay_.appearOnAllSpaces = change!["new"] as! Bool
         break
       default:
@@ -102,9 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private func setupUserDefaults() {
     // Specify user defaults
     let appDefaults = [
-      "video_opacity": NSNumber(float: 1.0),
-      "opaque_on_hover": false,
-      "appear_on_all_spaces": false
+      DefaultsKeys.VideoOpacity: NSNumber(float: 1.0),
+      DefaultsKeys.OpaqueOnHover: false,
+      DefaultsKeys.AppearOnAllSpaces: false
     ]
 
     // Register the defaults

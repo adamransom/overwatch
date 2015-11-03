@@ -44,6 +44,16 @@ class VideoWindowsDisplay : VideoWindowDelegate {
   // MARK: Private Variables
   private var windows_ = [VideoWindow]()
 
+  // MARK: - Initialisation
+
+  init() {
+    let defaults = NSUserDefaults.standardUserDefaults()
+
+    self.appearOnAllSpaces = defaults.boolForKey(DefaultsKeys.AppearOnAllSpaces)
+    self.opaqueOnHover = defaults.boolForKey(DefaultsKeys.OpaqueOnHover)
+    self.opacity = defaults.floatForKey(DefaultsKeys.VideoOpacity)
+  }
+
   // MARK: - Public Functions
 
   /**
