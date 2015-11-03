@@ -55,6 +55,8 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   private var window_: NSWindow?
   private var index_: Int?
   private var fadedUp_ = false
+  private var hovering_ = false
+  private var optionPressed_ = false
 
   // MARK: - Initiation
 
@@ -108,12 +110,26 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
 
   func mouseEntered() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = false
-    fadeUp();
+    hovering_ = true
+    handleFade();
   }
 
   func mouseExited() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = true
-    fadeDown();
+    hovering_ = false
+    handleFade();
+  }
+
+  func optionPressed() {
+    optionPressed_ = true
+    self.window_!.ignoresMouseEvents = true
+    handleFade();
+  }
+
+  func optionReleased() {
+    optionPressed_ = false
+    self.window_!.ignoresMouseEvents = false
+    handleFade();
   }
 
   // MARK: - Private Functions
@@ -192,30 +208,28 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   }
 
   /**
-    Fades the window from current opacity up to fully opaque (if not
-    already fully opaque)
+    Handles fading to different opacities depending on hovering,
+    modifier keys and user preferences.
   */
-  func fadeUp() {
-    if (self.opaqueOnHover && self.opacity < 1.0) {
-      self.fadedUp_ = true
-      NSAnimationContext.runAnimationGroup({ (context) -> Void in
-        self.window_!.animator().alphaValue = 1
-        }, completionHandler: { () -> Void in }
-      )
+  private func handleFade() {
+    if (optionPressed_) {
+      fadeTo(0.2)
+    } else if (hovering_ && self.opaqueOnHover) {
+      fadeTo(1)
+    } else {
+      fadeTo(self.opacity)
     }
   }
 
   /**
-    Fades the window from fully opaque to original opacity (if not set
-    to be fully opaque)
+    Fades the window to a particular opacity.
+
+    - Parameter opacity: The opacity to fade to.
   */
-  func fadeDown() {
-    if (self.fadedUp_ && self.opacity < 1.0) {
-      self.fadedUp_ = false
-      NSAnimationContext.runAnimationGroup({ (context) -> Void in
-        self.window_!.animator().alphaValue = CGFloat(self.opacity)
-        }, completionHandler: { () -> Void in }
-      )
-    }
+  private func fadeTo(opacity: Float) {
+    NSAnimationContext.runAnimationGroup({ (context) -> Void in
+      self.window_!.animator().alphaValue = CGFloat(opacity)
+      }, completionHandler: { () -> Void in }
+    )
   }
 }

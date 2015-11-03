@@ -16,6 +16,8 @@ class VideoViewController: NSViewController, WKNavigationDelegate {
   weak var delegate: VideoViewControllerDelegate?
   // MARK: Private Variables
   private var webView_: WKWebView?
+  private var optionPressed_ = false
+  private var optionTimer_: NSTimer?
 
   // MARK: - Overrides
   override func loadView() {
@@ -45,15 +47,62 @@ class VideoViewController: NSViewController, WKNavigationDelegate {
 
   override func mouseEntered(theEvent: NSEvent) {
     self.delegate?.mouseEntered()
+    // Start to the timer for polling the option key and then
+    // fire immediately to check if the option key was held whilst
+    // entering the window.
+    optionTimer_ = NSTimer.scheduledTimerWithTimeInterval(
+      0.1,
+      target: self,
+      selector: "pollOptionKey:",
+      userInfo: nil,
+      repeats: true
+    )
+    optionTimer_!.fire()
   }
 
   override func mouseExited(theEvent: NSEvent) {
     self.delegate?.mouseExited()
+    optionReleased()
+    optionTimer_?.invalidate()
+  }
+
+  // MARK: - Public Functions
+
+  /**
+    Checks to see whether the option key is pressed each time the
+    timer fires.
+
+    - Parameter timer: The timer that fired.
+  */
+  func pollOptionKey(timer: NSTimer) {
+    if (!optionPressed_ && NSEvent.modifierFlags().contains(.AlternateKeyMask)) {
+      optionPressed()
+    } else if (optionPressed_ && !NSEvent.modifierFlags().contains(.AlternateKeyMask)) {
+      optionReleased()
+    }
   }
 
   // MARK: - WKNavigationDelegate Functions
 
   func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
     self.webView_?.hidden = false
+  }
+
+  // MARK: - Private Functions
+
+  /**
+    Sets the option pressed state and notifies delegates.
+  */
+  private func optionPressed() {
+    optionPressed_ = true
+    self.delegate?.optionPressed()
+  }
+
+  /**
+    Sets the option released state and notifies delegates.
+  */
+  private func optionReleased() {
+    optionPressed_ = false
+    self.delegate?.optionReleased()
   }
 }
