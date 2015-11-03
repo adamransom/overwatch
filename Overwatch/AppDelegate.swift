@@ -103,6 +103,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
+  // MARK: - EventManager Functions
+
+  /**
+    Handles the `overwatch://` URL scheme by checking the URL received is valid and then opening
+    a window.
+  */
+  func handleGetURLEvent(event: NSAppleEventDescriptor, replyEvent: NSAppleEventDescriptor) {
+    if var url = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
+      url = url.stringByReplacingOccurrencesOfString("overwatch://", withString: "")
+      let parser = URLParser(urlFragment: url)
+
+      if (parser.isYouTube()) {
+        createVideoWindow(parser.url())
+      } else {
+        let alert = NSAlert();
+        alert.messageText = "Sorry, that doesn't seem to be a YouTube video :("
+        alert.addButtonWithTitle("OK")
+        alert.runModal()
+      }
+    }
+  }
+
   // MARK: - Private Functions
 
   /**
@@ -238,26 +260,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       }
     default:
       break
-    }
-  }
-
-  /**
-    Handles the `overwatch://` URL scheme by checking the URL received is valid and then opening
-    a window.
-  */
-  private func handleGetURLEvent(event: NSAppleEventDescriptor, replyEvent: NSAppleEventDescriptor) {
-    if var url = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
-      url = url.stringByReplacingOccurrencesOfString("overwatch://", withString: "")
-      let parser = URLParser(urlFragment: url)
-
-      if (parser.isYouTube()) {
-        createVideoWindow(parser.url())
-      } else {
-        let alert = NSAlert();
-        alert.messageText = "Sorry, that doesn't seem to be a YouTube video :("
-        alert.addButtonWithTitle("OK")
-        alert.runModal()
-      }
     }
   }
 
