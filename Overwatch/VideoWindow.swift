@@ -47,9 +47,10 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
   }
   // MARK: Private Variables
   private let mask_ = NSTitledWindowMask |
-                     NSFullSizeContentViewWindowMask |
-                     NSResizableWindowMask |
-                     NSClosableWindowMask
+                      NSFullSizeContentViewWindowMask |
+                      NSResizableWindowMask |
+                      NSClosableWindowMask |
+                      NSMiniaturizableWindowMask
 
   private var controller_: NSWindowController?
   private var window_: NSWindow?
@@ -110,12 +111,14 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
 
   func mouseEntered() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = false
+    self.window_!.standardWindowButton(.MiniaturizeButton)?.hidden = false
     hovering_ = true
     handleFade();
   }
 
   func mouseExited() {
     self.window_!.standardWindowButton(.CloseButton)?.hidden = true
+    self.window_!.standardWindowButton(.MiniaturizeButton)?.hidden = true
     hovering_ = false
     handleFade();
   }
