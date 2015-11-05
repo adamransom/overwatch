@@ -52,6 +52,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
                       NSClosableWindowMask |
                       NSMiniaturizableWindowMask
 
+  private var viewController_: VideoViewController?
   private var controller_: NSWindowController?
   private var window_: NSWindow?
   private var index_: Int?
@@ -82,6 +83,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
     // Need to explicitly set the contentView to nil here, in order
     // to properly release the WKWebView.
     self.window_?.contentView = nil
+    self.viewController_?.cleanUp()
   }
 
   // MARK: - Public Functions
@@ -165,6 +167,7 @@ class VideoWindow : NSObject, NSWindowDelegate, VideoViewControllerDelegate {
         window.contentView = viewController.view
         window.contentViewController = viewController
         viewController.view.frame = window.contentView!.bounds
+        self.viewController_ = viewController
       }
     }
   }

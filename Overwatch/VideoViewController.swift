@@ -69,6 +69,16 @@ class VideoViewController: NSViewController, WKNavigationDelegate {
   // MARK: - Public Functions
 
   /**
+    Cleans up anything which holds a reference to this
+    view controller.
+  */
+  func cleanUp() {
+    // The NSTimer holds a strong reference to the target, which in
+    // this case is `self`, so it needs to be invalidated.
+    self.optionTimer_?.invalidate()
+  }
+
+  /**
     Checks to see whether the option key is pressed each time the
     timer fires.
 
