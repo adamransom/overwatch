@@ -1,19 +1,19 @@
 # Overwatch
 
-A simple application which allows YouTube videos be watched out of the browser. Combined with a future Chrome/Firefox plugin, you'll be able to popout videos directly from YouTube.
+A simple application which allows YouTube videos be watched out of the browser. Combined with the [Chrome extension](https://chrome.google.com/webstore/detail/overwatch/gbjbjllnbjcefoocealghpcjjjbdpbif), you're able to popout videos directly from YouTube.
 
-## Features
+## Features (v0.1)
 
 - Runs quietly in the menu bar, waiting until you need to watch
-- Accepts all forms of YouTube URLs
-- Can open URL directly from the clipboard
+- Currently works with YouTube videos, with more services coming
+- Opens videos using the Chrome extension or from URLs on the clipboard
 - Handles multiple videos at once and remembers the layout
+- Video opacity can be set (optionally becoming opaque on hover)
+- Hold `Option` whilst hovering the video allows clicking on things directly below the video
 
-## TODO
+## Coming soon...
 
-- [x] ~~Add parsing of many types of YouTube URLs~~
-- [ ] Resizing videos doesn't work yet
-- [x] ~~Only show "Close" button when hovering over videos~~
-- [x] ~~Make videos always on top~~
-- [ ] Allow videos to be made transparent (optionally becoming more opaque when hovering over)
-- [ ] Much more, but it's late now and this is enough to be getting on with...
+- [ ] More video services
+- [ ] Support for YouTube playlist URLs
+- [ ] Full-screen support
+- [ ] Support for `time` parameter
