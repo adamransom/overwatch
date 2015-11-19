@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet private weak var statusMenu_: NSMenu!
   @IBOutlet private weak var menuOpenClipboard_: NSMenuItem!
   // MARK: Private Variables
-  private var videoDisplay_ = VideoWindowsDisplay()
+  private var videoDisplay_: VideoWindowsDisplay?
   private var preferencesWindow_: NSWindow?
   private let statusItem_ = NSStatusBar.systemStatusBar()
                                        .statusItemWithLength(NSSquareStatusItemLength)
@@ -37,6 +37,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     setupStatusMenu()
     setupUserDefaults()
+    // Create VideoWindowDisplay _after_ setting up user defaults
+    videoDisplay_ = VideoWindowsDisplay()
   }
 
   // MARK: - Overrides
@@ -50,13 +52,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (keyPath != nil && change != nil) {
       switch keyPath! {
       case DefaultsKeys.VideoOpacity:
-        self.videoDisplay_.opacity = Float(change!["new"] as! NSNumber)
+        self.videoDisplay_?.opacity = change!["new"] as! Float
         break
       case DefaultsKeys.OpaqueOnHover:
-        self.videoDisplay_.opaqueOnHover = change!["new"] as! Bool
+        self.videoDisplay_?.opaqueOnHover = change!["new"] as! Bool
         break
       case DefaultsKeys.AppearOnAllSpaces:
-        self.videoDisplay_.appearOnAllSpaces = change!["new"] as! Bool
+        self.videoDisplay_?.appearOnAllSpaces = change!["new"] as! Bool
         break
       default:
         break
@@ -98,7 +100,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func actionResetPositions(sender: NSMenuItem) {
-    for window in videoDisplay_.windows {
+    for window in videoDisplay_!.windows {
       window.resetPosition()
     }
   }
@@ -133,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   private func setupUserDefaults() {
     // Specify user defaults
     let appDefaults = [
-      DefaultsKeys.VideoOpacity: NSNumber(float: 1.0),
+      DefaultsKeys.VideoOpacity: 1.0,
       DefaultsKeys.OpaqueOnHover: false,
       DefaultsKeys.AppearOnAllSpaces: false
     ]
@@ -193,7 +195,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (url == nil) { return }
 
     if let window = VideoWindow(url: url!) {
-      videoDisplay_.add(window)
+      videoDisplay_!.add(window)
     }
   }
 
